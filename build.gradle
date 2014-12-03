@@ -1,0 +1,14 @@
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+ }
+
+apply plugin: "eclipse"
+apply plugin: "idea"
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(dir: '/path/to/xl-deploy/distribution/plugins', include: '*.jar')
+    compile fileTree(dir: '/path/to/xl-deploy/distribution/lib', include: '*.jar')
+}

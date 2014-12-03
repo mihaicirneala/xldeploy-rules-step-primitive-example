@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<rules xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
+
+    <rule name="Example rule" scope="deployed">
+        <conditions>
+            <type>example.ResourceDeployed</type>
+            <operation>CREATE</operation>
+            <operation>MODIFY</operation>
+        </conditions>
+        <steps>
+            <noop>
+                <description>A step of type 'noop' is a simple step type with only the basic parameters 'order' and 'description'</description>
+                <order>50</order>
+            </noop>
+            <os-script>
+                <description>Step parameters may be auto-calculatable, optional, or both, as e.g. for os-script steps</description>
+                <!-- <order> is auto-calculated -->
+                <target-host expression="true">deployed.container.host</target-host>
+                <script>scripts/do-action</script>
+                <freemarker-context>
+                    <deployedApplicationName expression="true">deployedApplication.name</deployedApplicationName>
+                </freemarker-context>
+                <classpath-resources>
+                    <value>html/index.html</value>
+                </classpath-resources>
+                <!-- <upload-artifacts> is optional -->
+            </os-script>
+            <my-nifty-step>
+                <freemarker-context>
+                    <prop>myProp</prop>
+                </freemarker-context>
+                <default-host-u-r-l>http://localhost:7981</default-host-u-r-l>
+            </my-nifty-step>
+        </steps>
+    </rule>
+
+
+</rules>
